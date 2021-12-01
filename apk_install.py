@@ -9,13 +9,13 @@ import threading
 
 class apk_install():
     def __init__(self):
-        self.path = r'D:\apks'  # apk包的路径
+        self.path = r"D:\apks"  # apk包的路径
 
     def install_and_open(self, device_name, apk_name):
         # 安装游戏
         os.system("adb -s" + device_name + "install -r" + self.path + "\\" + apk_name)
         # 启动游戏的指令 shell  am  start -n   包名/主activity
-        # os.system("adb -s" + device_name + "shell am start -n com.") 包名
+        # os.system("adb -s" + device_name + "shell am start -n com.****") 包名
 
     def get_device_list(self):
         os.system("adb devices")
@@ -32,7 +32,7 @@ class apk_install():
 
 # 界面ui
 class APKTk():
-    def __init__(self):
+    def __init__(self, apk_install):
         self.root = Tk();
         self.root.geometry('800x300')
         self.root.title("APK安装器")
@@ -79,6 +79,10 @@ class APKTk():
     def refresh_button(self):
         button_refresh = Button(self.root, text='刷新', command=self.refresh_data)
         button_refresh.grid(row=len(self.device_list) + 1, column=2)
+
+    def input_text(self):
+        entry_log = Entry(self.root, width=65, textvariable=self.apk_name)
+        entry_log.grid(row=len(self.device_list)+1,column=0,sticky='w')
 
     def get_apk_name(self):
         return self.apk_name.get()
