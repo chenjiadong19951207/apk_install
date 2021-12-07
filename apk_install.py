@@ -7,7 +7,7 @@ from tkinter import ttk, scrolledtext
 import threading
 
 
-class apk_install():
+class apk_install:
     def __init__(self):
         self.path = r"D:\apks"  # apk包的路径
 
